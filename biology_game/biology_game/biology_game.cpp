@@ -20,6 +20,28 @@ const int bloodCellsSize = 200;
 const int levelSize = 1800;
 const int groundPiece = 200;
 
+SDL_Window* window = SDL_CreateWindow("window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+
+SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+SDL_Texture* backgroundTexture = IMG_LoadTexture(renderer, "images/background.png");
+SDL_Texture* bloodeCellTexture = IMG_LoadTexture(renderer, "images/bloodCell.png");
+SDL_Texture* loadingTexture = IMG_LoadTexture(renderer, "images/loading.png");
+SDL_Texture* playButtonSprite = IMG_LoadTexture(renderer, "images/PlayButton.png");
+SDL_Texture* quitButtonSprite = IMG_LoadTexture(renderer, "images/QuitButton.png");
+SDL_Texture* groundTextureSprite = IMG_LoadTexture(renderer, "images/ground.png");
+SDL_Texture* playerTextureSprite = IMG_LoadTexture(renderer, "images/player.png");
+SDL_Texture* laserTexture = IMG_LoadTexture(renderer, "images/laser.png");
+SDL_Texture* heartTexture = IMG_LoadTexture(renderer, "images/heart.png");
+SDL_Texture* attspeedTexture = IMG_LoadTexture(renderer, "images/upgrades/attspeed.png");
+SDL_Texture* hpupTexture = IMG_LoadTexture(renderer, "images/upgrades/hpup.png");
+SDL_Texture* levelupTexture = IMG_LoadTexture(renderer, "images/upgrades/levelup.png");
+SDL_Texture* walkSpeedTexture = IMG_LoadTexture(renderer, "images/upgrades/walkSpeed.png");
+SDL_Texture* damageUpTexture = IMG_LoadTexture(renderer, "images/upgrades/damageUp.png");
+SDL_Texture* fireRateTexture = IMG_LoadTexture(renderer, "images/upgrades/firerate.png");
+SDL_Texture* entitySpriteTexture = IMG_LoadTexture(renderer, "images/entitySprite.png");
+
+
 
 void inputPositions()
 {
