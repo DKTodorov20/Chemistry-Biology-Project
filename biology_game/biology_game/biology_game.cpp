@@ -447,6 +447,57 @@ void levelUp()
 	}
 }
 
+void entityUpdate()
+{
+	loop(0, entityRect.size())
+	{
+		if (entityAlive[i] == 1)
+		{
+			if (entityRect[i].x < 0)
+				entityDirection[i] = 1;
+			if (entityRect[i].x + entityRect[i].w > SCREEN_WIDTH)
+				entityDirection[i] = 0;
+			if (entityDirection[i] == 1)
+				entityRect[i].x += 5;
+			else
+				entityRect[i].x -= 5;
+
+			entityRect[i].y -= entityGravity[i];
+			entityGravity[i] -= 1;
+			for (int j = 0; j < floorRectOrigin.size(); j++)
+			{
+				if ((entityRect[i].y + entityRect[i].h > floorRectOrigin[j].y + groundPiece * 0.15 and entityRect[i].y < floorRectOrigin[j].y + floorRectOrigin[j].h - groundPiece * 0.15 and entityRect[i].x + entityRect[i].w > floorRectOrigin[j].x and entityRect[i].x < floorRectOrigin[j].x + floorRectOrigin[j].w))
+				{
+					entityGravity[i] = 0;
+					entityGravity[i] += 1;
+					break;
+				}
+			}
+			int l = 0;
+			for (auto j = lasers.begin(); j != lasers.end(); j++, l++)
+			{
+				if (entityRect[i].x <= lasers[l].x + lasers[l].w and entityRect[i].x + entityRect[i].w >= lasers[l].x and lasers[l].y <= entityRect[i].y + entityRect[i].h and lasers[l].y + lasers[l].h >= entityRect[i].y)
+				{
+					entityAlive[i] = 0;
+					kills++;
+					respawn[i] = 30;
+				}
+			}
+			if (entityRect[i].x <= playerRect.x + playerRect.w and entityRect[i].x + entityRect[i].w >= playerRect.x and playerRect.y <= entityRect[i].y + entityRect[i].h and playerRect.y + playerRect.h >= entityRect[i].y and hurtCooldown == 0)
+			{
+				hurtCooldown = hurtCooldownCheck;
+				hurt();
+			}
+
+		}
+		else if (respawn[i] >= 0)
+			respawn[i] -= 1;
+		entityCurrentRect[i].x += 128;
+		if (entityCurrentRect[i].x >= 128 * 8)
+			entityCurrentRect[i].x = 0;
+	}
+}
+
 int main(int argc, char* args[])
 {
 	srand(time(0));
