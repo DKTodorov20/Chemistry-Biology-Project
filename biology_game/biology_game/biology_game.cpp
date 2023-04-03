@@ -261,6 +261,53 @@ void inputPositions()
 	}
 }
 
+void mapGenerating()
+{
+	entityRect.clear();
+	entityDirection.clear();
+	entityGravity.clear();
+	entityCurrentRect.clear();
+	loop(0, 3)
+	{
+		entityDirection.push_back(0);
+		entityGravity.push_back(0);
+		entityAlive.push_back(1);
+		entityCurrentRect.push_back({ 0,0,100,130 });
+	}
+
+	entityRect.push_back({ 50,200,120, 120 });
+	entityRect.push_back({ SCREEN_WIDTH - 100,200,120, 120 });
+	entityRect.push_back({ SCREEN_WIDTH / 2,50,120, 120 });
+
+	for (int j = 0; j < 10; j++)
+	{
+		floorRectOrigin.push_back({ (j - 1) * groundPiece,SCREEN_HEIGHT - groundPiece, groundPiece, groundPiece });
+		if (j == 0)
+			floorRectCurrent.push_back({ 0,0, groundPiece, groundPiece });
+		else if (j == 10)
+			floorRectCurrent.push_back({ groundPiece,0, groundPiece, groundPiece });
+		else
+			floorRectCurrent.push_back({ groundPiece / 2,0, groundPiece, groundPiece });
+	}
+
+	for (int j = 0; j < 4; j++)
+	{
+		floorRectOrigin.push_back({ (j + 1) * groundPiece,200, groundPiece, groundPiece });
+		if (j == 0)
+			floorRectCurrent.push_back({ 0,0, groundPiece, groundPiece });
+		else if (j == 3)
+			floorRectCurrent.push_back({ groundPiece,0, groundPiece, groundPiece });
+		else
+			floorRectCurrent.push_back({ groundPiece / 2,0, groundPiece, groundPiece });
+	}
+
+	floorRectOrigin.push_back({ 0,500, groundPiece, groundPiece });
+	floorRectCurrent.push_back({ groundPiece,0, groundPiece, groundPiece });
+
+	floorRectOrigin.push_back({ SCREEN_WIDTH - groundPiece,500, groundPiece, groundPiece });
+	floorRectCurrent.push_back({ 0,0, groundPiece, groundPiece });
+}
+
 void upgradePrint()
 {
 	if (stats == 0)
