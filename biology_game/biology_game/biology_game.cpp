@@ -6,13 +6,10 @@
 #include <ctime>
 #include <vector>
 
-
 #define loop(a, b) for (int i = a; i < b; i++)
 #define invisRateCheck if (invisRate == 255)
 
-
 using namespace std;
-
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 960;
@@ -58,7 +55,6 @@ SDL_Rect levelUpRect = { 400, 400,SCREEN_WIDTH / 2, SCREEN_WIDTH / 4 };
 
 SDL_Rect upgradeRect = { SCREEN_WIDTH / 2 - 50, 630,200,100 };
 
-
 vector<SDL_Rect> floorRectOrigin;
 vector<SDL_Rect> floorRectCurrent;
 vector<SDL_Rect> lasers;
@@ -101,7 +97,6 @@ int stats = 0;
 int respawn[3] = { 0,0,0 };
 
 SDL_Event event;
-
 
 void laserAttacks()
 {
@@ -307,9 +302,6 @@ void mapGenerating()
 	floorRectOrigin.push_back({ SCREEN_WIDTH - groundPiece,500, groundPiece, groundPiece });
 	floorRectCurrent.push_back({ 0,0, groundPiece, groundPiece });
 }
-
-
-
 void gravitiyFunc()
 {
 	playerRect.y -= gravity;
@@ -341,7 +333,6 @@ void upgradePrint()
 		SDL_RenderCopy(renderer, fireRateTexture, 0, &upgradeRect);
 	}
 }
-
 
 void entetyRespawn()
 {
@@ -407,44 +398,44 @@ void levelUp()
 
 		upgradePrint();
 	}
+}
 
-	void hitBox()
+void hitBox()
+{
+	gravityDebounce = 0;
+	loop(0, floorRectOrigin.size())
 	{
-		gravityDebounce = 0;
-		loop(0, floorRectOrigin.size())
+		if ((playerRect.y + playerRect.h > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
 		{
-			if ((playerRect.y + playerRect.h > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
-			{
-				gravityDebounce = 1;
-				gravity = 0;
-				onGround = 1;
-				if ((playerRect.y + playerRect.h - 1 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
-					gravity = 1;
-			}
-			else
-			{
-				if (gravityDebounce == 0)
-					onGround = 0;
-			}
+			gravityDebounce = 1;
+			gravity = 0;
+			onGround = 1;
+			if ((playerRect.y + playerRect.h - 1 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
+				gravity = 1;
+		}
+		else
+		{
+			if (gravityDebounce == 0)
+				onGround = 0;
+		}
 
-			if ((playerRect.y + playerRect.h - 20 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w + walkspeed > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
-			{
-				playerRect.x -= walkspeed;
-				onGround = 1;
-			}
+		if ((playerRect.y + playerRect.h - 20 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w + walkspeed > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
+		{
+			playerRect.x -= walkspeed;
+			onGround = 1;
+		}
 
-			if ((playerRect.y + playerRect.h - 20 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x - walkspeed < floorRectOrigin[i].x + floorRectOrigin[i].w))
-			{
-				playerRect.x += walkspeed;
-				onGround = 1;
-			}
+		if ((playerRect.y + playerRect.h - 20 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x - walkspeed < floorRectOrigin[i].x + floorRectOrigin[i].w))
+		{
+			playerRect.x += walkspeed;
+			onGround = 1;
 		}
 	}
-	void hurt()
-	{
-		hearts--;
-		gravity = 10;
-	}
+}
+void hurt()
+{
+	hearts--;
+	gravity = 10;
 }
 
 void entityUpdate()
@@ -715,6 +706,7 @@ void onLevels()
 			SDL_RenderCopy(renderer, entitySpriteTexture, &entityCurrentRect[i], &entityRect[i]);
 	levelUp();
 }
+
 
 int main(int argc, char* args[])
 {
