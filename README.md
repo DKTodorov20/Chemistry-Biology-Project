@@ -26,3 +26,11 @@ The topic of the project was to create a C++ game or software that is directly r
 <a><img src="https://avatars.githubusercontent.com/u/18133?s=200&v=4" alt="git" width="61" height="58"/> </a>
 <a><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github" width="61" height="58"/> </a>
 </p>
+
+## 🧰 Installation
+```
+You can download our project by using the green "Code" button.
+
+Or by pasting the following code in your CMD:
+git clone https://github.com/DKTodorov20/Chemistry-Biology-Project.git
+```
