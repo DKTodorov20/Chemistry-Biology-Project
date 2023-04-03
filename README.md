@@ -3,7 +3,7 @@
 <img src = "" width = "400px" alt = "logo">
 </p>
 
-## Topic
+## 🔥Topic
 The topic of the project was to create a C++ game or software that is directly related to Chemistry and Biology.The software itself will have a purpose training.
 ## ⭐ Team Members
 * **Danail Todorov** - *SCRUM Trainer* 
