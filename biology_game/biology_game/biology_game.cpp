@@ -407,6 +407,44 @@ void levelUp()
 
 		upgradePrint();
 	}
+
+	void hitBox()
+	{
+		gravityDebounce = 0;
+		loop(0, floorRectOrigin.size())
+		{
+			if ((playerRect.y + playerRect.h > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
+			{
+				gravityDebounce = 1;
+				gravity = 0;
+				onGround = 1;
+				if ((playerRect.y + playerRect.h - 1 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
+					gravity = 1;
+			}
+			else
+			{
+				if (gravityDebounce == 0)
+					onGround = 0;
+			}
+
+			if ((playerRect.y + playerRect.h - 20 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w + walkspeed > floorRectOrigin[i].x and playerRect.x < floorRectOrigin[i].x + floorRectOrigin[i].w))
+			{
+				playerRect.x -= walkspeed;
+				onGround = 1;
+			}
+
+			if ((playerRect.y + playerRect.h - 20 > floorRectOrigin[i].y + groundPiece * 0.15 and playerRect.y < floorRectOrigin[i].y + floorRectOrigin[i].h - groundPiece * 0.15 and playerRect.x + playerRect.w > floorRectOrigin[i].x and playerRect.x - walkspeed < floorRectOrigin[i].x + floorRectOrigin[i].w))
+			{
+				playerRect.x += walkspeed;
+				onGround = 1;
+			}
+		}
+	}
+	void hurt()
+	{
+		hearts--;
+		gravity = 10;
+	}
 }
 
 int main(int argc, char* args[])
