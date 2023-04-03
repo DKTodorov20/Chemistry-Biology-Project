@@ -545,6 +545,78 @@ void enterEvent()
 	buttonNumber = 1;
 }
 
+void cooldownCheck()
+{
+	if (cooldown < fireRate)
+	{
+		cooldown++;
+	}
+}
+
+void keys()
+{
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_KEYDOWN:
+			if (onMenuCheck == 1)
+			{
+				if (event.key.keysym.scancode == SDL_SCANCODE_UP)
+					buttonNumber--;
+				else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
+					buttonNumber++;
+				else if (event.key.keysym.sym == SDLK_RETURN)
+					enterEvent();
+			}
+			else
+			{
+				if (event.key.keysym.sym == SDLK_ESCAPE)
+				{
+					onMenuCheck = 1;
+					blackoutCheck = 1;
+				}
+				else if (event.key.keysym.scancode == SDL_SCANCODE_UP and SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT] and onGround == 1)
+				{
+					gravity += jumpStrength;
+					playerRect.x -= walkspeed;
+
+				}
+				else if (event.key.keysym.scancode == SDL_SCANCODE_UP and SDL_GetKeyboardState(NULL)[SDL_SCANCODE_RIGHT] and onGround == 1)
+				{
+					gravity += jumpStrength;
+					playerRect.x += walkspeed;
+
+				}
+				else if (event.key.keysym.scancode == SDL_SCANCODE_UP and onGround == 1)
+					gravity += jumpStrength;
+				else if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
+					playerRect.x -= walkspeed;
+				else if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
+					playerRect.x += walkspeed;
+				else if (event.key.keysym.scancode == SDL_SCANCODE_A and cooldown == fireRate)
+				{
+					cooldown = 0;
+					lasers.push_back({ playerRect.x - playerRect.w / 2, playerRect.y,laserSize,laserSize });
+					laserDirection.push_back(1);
+				}
+				else if (event.key.keysym.scancode == SDL_SCANCODE_D and cooldown == fireRate)
+				{
+					cooldown = 0;
+					lasers.push_back({ playerRect.x + playerRect.w / 2, playerRect.y,laserSize,laserSize });
+					laserDirection.push_back(2);
+				}
+		case SDL_KEYUP:
+			keyPressed = false;
+			break;
+			}
+		}
+
+
+	}
+	fixKeys();
+}
+
 int main(int argc, char* args[])
 {
 	srand(time(0));
