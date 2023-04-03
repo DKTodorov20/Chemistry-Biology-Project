@@ -7,6 +7,10 @@
 #include <vector>
 
 
+#define loop(a, b) for (int i = a; i < b; i++)
+#define invisRateCheck if (invisRate == 255)
+
+
 using namespace std;
 
 
@@ -69,12 +73,11 @@ void gravitiyFunc()
 }
 
 
-int main(int argc, char* args[]) 
+int main(int argc, char* args[])
 {
 	srand(time(0));
 
 	inputPositions();
-
 
 	const int FPS = 60;
 	float frameTime = 0;
@@ -84,9 +87,9 @@ int main(int argc, char* args[])
 	float moveSpeed = 200.0f;
 	const Uint8* keyState;
 
-	int b[3] = { 0,0,0 };
-
 	SDL_SetTextureColorMod(entitySpriteTexture, 41, 0, 0);
+
+	SDL_SetTextureColorMod(playerTextureSprite, 41, 0, 0);
 
 	while (isPlaying)
 	{
