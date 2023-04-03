@@ -308,6 +308,14 @@ void mapGenerating()
 	floorRectCurrent.push_back({ 0,0, groundPiece, groundPiece });
 }
 
+
+
+void gravitiyFunc()
+{
+	playerRect.y -= gravity;
+	gravity -= 1;
+}
+
 void upgradePrint()
 {
 	if (stats == 0)
@@ -334,12 +342,20 @@ void upgradePrint()
 	}
 }
 
-void gravitiyFunc()
-{
-	playerRect.y -= gravity;
-	gravity -= 1;
-}
 
+void entetyRespawn()
+{
+	loop(0, 3)
+	{
+		if (respawn[i] == 3)
+		{
+			entityRect[i].y -= 500;
+			entityAlive[i] = 1;
+			respawn[i] = 0;
+		}
+	}
+
+}
 
 int main(int argc, char* args[])
 {
