@@ -41,6 +41,22 @@ SDL_Texture* damageUpTexture = IMG_LoadTexture(renderer, "images/upgrades/damage
 SDL_Texture* fireRateTexture = IMG_LoadTexture(renderer, "images/upgrades/firerate.png");
 SDL_Texture* entitySpriteTexture = IMG_LoadTexture(renderer, "images/entitySprite.png");
 
+SDL_Rect background = { 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
+
+SDL_Rect bloodCellOrigin[40];
+SDL_Rect bloodCellCurrent[40];
+
+SDL_Rect playButtonOrigin = { SCREEN_WIDTH / 2 - 550 / 2, SCREEN_HEIGHT / 2, 550, 300 };
+SDL_Rect playButtonCurrent = { 0, 0, 250, 300 };
+
+SDL_Rect quitButtonOrigin = { SCREEN_WIDTH / 2 - 200 / 2, SCREEN_HEIGHT / 2 + 200, 200, 150 };
+SDL_Rect quitButtonCurrent = { 0, 0, 125, 300 };
+
+SDL_Rect playerRect = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2,100,100 };
+
+SDL_Rect levelUpRect = { 400, 400,SCREEN_WIDTH / 2, SCREEN_WIDTH / 4 };
+
+SDL_Rect upgradeRect = { SCREEN_WIDTH / 2 - 50, 630,200,100 };
 
 
 void inputPositions()
