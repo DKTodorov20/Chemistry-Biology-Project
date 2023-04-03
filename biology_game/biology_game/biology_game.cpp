@@ -59,6 +59,17 @@ SDL_Rect levelUpRect = { 400, 400,SCREEN_WIDTH / 2, SCREEN_WIDTH / 4 };
 SDL_Rect upgradeRect = { SCREEN_WIDTH / 2 - 50, 630,200,100 };
 
 
+vector<SDL_Rect> floorRectOrigin;
+vector<SDL_Rect> floorRectCurrent;
+vector<SDL_Rect> lasers;
+vector<SDL_Rect> heartsRect;
+vector<SDL_Rect> entityRect;
+vector<SDL_Rect> entityCurrentRect;
+vector<int> laserDirection;
+vector<int> entityGravity;
+vector<bool> entityAlive;
+vector<bool> entityDirection;
+
 void inputPositions()
 {
 	loop(0, 5)
