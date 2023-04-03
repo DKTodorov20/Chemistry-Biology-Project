@@ -103,6 +103,22 @@ int respawn[3] = { 0,0,0 };
 SDL_Event event;
 
 
+void laserAttacks()
+{
+	int j = 0;
+	for (auto i = lasers.begin(); i != lasers.end(); i++, j++)
+	{
+		if (laserDirection[j] == 1)
+		{
+			lasers[j].x -= laserSpeed;
+		}
+		else if (laserDirection[j] == 2)
+		{
+			lasers[j].x += laserSpeed;
+		}
+	}
+}
+
 void inputPositions()
 {
 	loop(0, 5)
