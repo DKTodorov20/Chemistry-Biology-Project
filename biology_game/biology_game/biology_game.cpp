@@ -153,6 +153,90 @@ void fixKeys()
 	}
 }
 
+void boubleMove()
+{
+	loop(0, 5)
+	{
+		bloodCellOrigin[i].x += 15;
+		bloodCellCurrent[i].x -= 15;
+
+		bloodCellCurrent[i].x += bloodCellsSize * 2;
+
+		if (bloodCellOrigin[i].x > SCREEN_WIDTH)
+		{
+			bloodCellOrigin[i].x = -bloodCellsSize - (rand() % (bloodCellsSize * 2));
+			bloodCellOrigin[i].y = (rand() % SCREEN_HEIGHT);
+		}
+		if (bloodCellCurrent[i].x > bloodCellsSize * 18)
+		{
+			bloodCellCurrent[i].x = 0;
+		}
+
+	}
+
+	loop(5, 10)
+	{
+
+		bloodCellOrigin[i].x += 10;
+		bloodCellCurrent[i].x -= 15;
+
+		bloodCellCurrent[i].x += bloodCellsSize * 2;
+
+
+		if (bloodCellOrigin[i].x > SCREEN_WIDTH)
+		{
+			bloodCellOrigin[i].x = -bloodCellsSize - (rand() % (bloodCellsSize * 2));
+			bloodCellOrigin[i].y = (rand() % SCREEN_HEIGHT);
+		}
+		if (bloodCellCurrent[i].x > bloodCellsSize * 18)
+		{
+			bloodCellCurrent[i].x = 0;
+		}
+
+	}
+
+	loop(10, 20)
+	{
+
+		bloodCellOrigin[i].x += 5;
+		bloodCellCurrent[i].x -= 15;
+
+		bloodCellCurrent[i].x += bloodCellsSize * 2;
+
+		if (bloodCellOrigin[i].x > SCREEN_WIDTH)
+		{
+			bloodCellOrigin[i].x = -bloodCellsSize - (rand() % (bloodCellsSize * 2));
+			bloodCellOrigin[i].y = (rand() % SCREEN_HEIGHT);
+		}
+		if (bloodCellCurrent[i].x > bloodCellsSize * 18)
+		{
+			bloodCellCurrent[i].x = 0;
+		}
+
+	}
+
+	loop(20, 40)
+	{
+
+		bloodCellOrigin[i].x += 2;
+		bloodCellCurrent[i].x -= 15;
+
+		bloodCellCurrent[i].x += bloodCellsSize * 2;
+
+
+		if (bloodCellOrigin[i].x > SCREEN_WIDTH)
+		{
+			bloodCellOrigin[i].x = -bloodCellsSize - (rand() % (bloodCellsSize * 2));
+			bloodCellOrigin[i].y = (rand() % SCREEN_HEIGHT);
+		}
+		if (bloodCellCurrent[i].x > bloodCellsSize * 18)
+		{
+			bloodCellCurrent[i].x = 0;
+		}
+
+	}
+}
+
 void inputPositions()
 {
 	loop(0, 5)
