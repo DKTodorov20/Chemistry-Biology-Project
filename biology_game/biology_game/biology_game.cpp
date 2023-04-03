@@ -617,6 +617,36 @@ void keys()
 	fixKeys();
 }
 
+void onMenu()
+{
+	keys();
+	buttonHighLight();
+	boubleMove();
+	SDL_RenderCopy(renderer, backgroundTexture, 0, &background);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 15);
+	loop(20, 40)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 25);
+	loop(10, 20)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 90);
+	loop(5, 10)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 150);
+	loop(0, 5)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 255);
+	SDL_RenderCopy(renderer, playButtonSprite, &playButtonCurrent, &playButtonOrigin);
+	SDL_RenderCopy(renderer, quitButtonSprite, &quitButtonCurrent, &quitButtonOrigin);
+
+}
+
+
 int main(int argc, char* args[])
 {
 	srand(time(0));
