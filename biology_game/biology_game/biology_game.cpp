@@ -646,6 +646,75 @@ void onMenu()
 
 }
 
+void printHearts()
+{
+	heartsRect.clear();
+
+	loop(0, hearts)
+		heartsRect.push_back({ 50 * i, 0, 50,50 });
+}
+
+void onLevels()
+{
+	if (mapGenerateDebounce == 1)
+	{
+		mapGenerating();
+		mapGenerateDebounce = 0;
+	}
+
+
+	keys();
+	boubleMove();
+	cooldownCheck();
+	printHearts();
+
+	SDL_RenderCopy(renderer, backgroundTexture, 0, &background);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 15);
+	loop(20, 40)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 25);
+	loop(10, 20)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 90);
+	loop(5, 10)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 150);
+	loop(0, 5)
+		SDL_RenderCopy(renderer, bloodeCellTexture, &bloodCellCurrent[i], &bloodCellOrigin[i]);
+
+	SDL_SetTextureAlphaMod(bloodeCellTexture, 255);
+
+	gravitiyFunc();
+	hitBox();
+
+	laserAttacks();
+
+	int j = 0;
+
+	for (auto i = lasers.begin(); i != lasers.end(); i++, j++)
+		SDL_RenderCopy(renderer, laserTexture, 0, &lasers[j]);
+
+	SDL_RenderCopy(renderer, playerTextureSprite, 0, &playerRect);
+
+	loop(0, hearts)
+		SDL_RenderCopy(renderer, heartTexture, 0, &heartsRect[i]);
+
+	entityUpdate();
+
+	entetyRespawn();
+
+	loop(0, floorRectOrigin.size())
+		SDL_RenderCopy(renderer, groundTextureSprite, &floorRectCurrent[i], &floorRectOrigin[i]);
+
+	loop(0, entityRect.size())
+		if (entityAlive[i] == 1)
+			SDL_RenderCopy(renderer, entitySpriteTexture, &entityCurrentRect[i], &entityRect[i]);
+	levelUp();
+}
 
 int main(int argc, char* args[])
 {
