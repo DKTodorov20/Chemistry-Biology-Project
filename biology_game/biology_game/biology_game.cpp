@@ -136,6 +136,12 @@ void fadeOut()
 		invisRate -= 17;
 }
 
+void returnHighLightToNormal()
+{
+	playButtonCurrent.x = 0;
+	quitButtonCurrent.x = 0;
+}
+
 void inputPositions()
 {
 	loop(0, 5)
