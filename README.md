@@ -1,6 +1,6 @@
 <h1 align = center> CHEMISTRY & BIOLOGY PROJECT </h1>
 <p align = "center">
-<img src = "" width = "400px" alt = "logo">
+<img src = "CodealersLogo.png" width = "400px" alt = "logo">
 </p>
 
 ## 🔥Topic
