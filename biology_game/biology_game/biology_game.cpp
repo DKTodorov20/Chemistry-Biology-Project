@@ -1,20 +1,70 @@
-// biology_game.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#include <SDL.h>
+#include <stdio.h>
+#include <SDL_image.h>
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
 
-int main()
+
+using namespace std;
+int main(int argc, char* args[]) 
 {
-    std::cout << "Hello World!\n";
+	srand(time(0));
+
+	inputPositions();
+
+
+	const int FPS = 60;
+	float frameTime = 0;
+	int prevTime = 0;
+	int currentTime = 0;
+	float deltaTime = 0;
+	float moveSpeed = 200.0f;
+	const Uint8* keyState;
+
+	int b[3] = { 0,0,0 };
+
+	SDL_SetTextureColorMod(entitySpriteTexture, 41, 0, 0);
+
+	while (isPlaying)
+	{
+
+		prevTime = currentTime;
+		currentTime = SDL_GetTicks();
+		deltaTime = (currentTime - prevTime) / 1000.0f;
+
+		SDL_SetTextureColorMod(entitySpriteTexture, 125, 0, 0);
+		SDL_SetTextureColorMod(laserTexture, 125, 0, 0);
+
+		if (onMenuCheck == 1)
+			onMenu();
+		else
+			onLevels();
+		if (loading > 0)
+		{
+			SDL_SetTextureAlphaMod(loadingTexture, loading);
+			SDL_RenderCopy(renderer, loadingTexture, 0, &background);
+			if (loading > 0)
+				loading -= 17;
+		}
+
+		if (blackoutCheck == 1)
+			fadeIn();
+		else
+			fadeOut();
+
+		if (hurtCooldown <= hurtCooldownCheck and hurtCooldown != 0)
+			hurtCooldown--;
+
+		SDL_RenderPresent(renderer);
+		SDL_RenderClear(renderer);
+		SDL_Delay(50);
+	}
+
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
