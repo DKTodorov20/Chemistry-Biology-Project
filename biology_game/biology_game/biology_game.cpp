@@ -36,7 +36,31 @@ void inputPositions()
 	}
 }
 
+void upgradePrint()
+{
+	if (stats == 0)
+	{
+		SDL_SetTextureAlphaMod(attspeedTexture, lavelUpTransparency);
+		SDL_RenderCopy(renderer, attspeedTexture, 0, &upgradeRect);
+	}
+	else if (stats == 1) {
 
+		SDL_SetTextureAlphaMod(damageUpTexture, lavelUpTransparency);
+		SDL_RenderCopy(renderer, damageUpTexture, 0, &upgradeRect);
+	}
+	else if (stats == 2) {
+		SDL_SetTextureAlphaMod(hpupTexture, lavelUpTransparency);
+		SDL_RenderCopy(renderer, hpupTexture, 0, &upgradeRect);
+	}
+	else if (stats == 3) {
+		SDL_SetTextureAlphaMod(walkSpeedTexture, lavelUpTransparency);
+		SDL_RenderCopy(renderer, walkSpeedTexture, 0, &upgradeRect);
+	}
+	else if (stats == 4) {
+		SDL_SetTextureAlphaMod(fireRateTexture, lavelUpTransparency);
+		SDL_RenderCopy(renderer, fireRateTexture, 0, &upgradeRect);
+	}
+}
 
 void gravitiyFunc()
 {
