@@ -14,6 +14,11 @@
 using namespace std;
 
 
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 960;
+const int bloodCellsSize = 200;
+const int levelSize = 1800;
+const int groundPiece = 200;
 
 
 void inputPositions()
