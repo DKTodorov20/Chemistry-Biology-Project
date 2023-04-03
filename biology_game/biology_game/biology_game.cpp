@@ -142,6 +142,17 @@ void returnHighLightToNormal()
 	quitButtonCurrent.x = 0;
 }
 
+void fixKeys()
+{
+	if (onMenuCheck == 1)
+	{
+		if (buttonNumber < 1)
+			buttonNumber = 1;
+		else if (buttonNumber > 2)
+			buttonNumber = 2;
+	}
+}
+
 void inputPositions()
 {
 	loop(0, 5)
