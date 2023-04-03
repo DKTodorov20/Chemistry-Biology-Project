@@ -38,6 +38,13 @@ void inputPositions()
 
 
 
+void gravitiyFunc()
+{
+	playerRect.y -= gravity;
+	gravity -= 1;
+}
+
+
 int main(int argc, char* args[]) 
 {
 	srand(time(0));
