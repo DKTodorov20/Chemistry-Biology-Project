@@ -70,6 +70,39 @@ vector<int> entityGravity;
 vector<bool> entityAlive;
 vector<bool> entityDirection;
 
+bool isPlaying = 1;
+bool onMenuCheck = 1;
+bool blackoutCheck = 0;
+bool keyPressed = false;
+bool onGround = 0;
+bool gravityDebounce = 0;
+bool levelDebounce = 0;
+bool mapGenerateDebounce = 1;
+
+int buttonNumber = 1;
+int lavelUpTransparency = 0;
+int invisRate = 0;
+int loading = 255;
+int playerX, playerY;
+int speed = 5;
+int laserSpeed = 20;
+int gravity = 0;
+int laserSize = 100;
+int fireRate = 20;
+int cooldown = 0;
+int walkspeed = 10;
+int jumpStrength = 24;
+int hearts = 3;
+int hurtCooldownCheck = 30;
+int hurtCooldown = 0;
+int kills = 0;
+int killsPerLevelUp = 3;
+int stats = 0;
+int respawn[3] = { 0,0,0 };
+
+SDL_Event event;
+
+
 void inputPositions()
 {
 	loop(0, 5)
