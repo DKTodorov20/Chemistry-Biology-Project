@@ -119,6 +119,23 @@ void laserAttacks()
 	}
 }
 
+void fadeIn()
+{
+	SDL_SetTextureAlphaMod(loadingTexture, invisRate);
+	SDL_RenderCopy(renderer, loadingTexture, 0, &background);
+	if (invisRate <= 255)
+		invisRate += 17;
+	if (invisRate == 255)
+		blackoutCheck = 0;
+}
+void fadeOut()
+{
+	SDL_SetTextureAlphaMod(loadingTexture, invisRate);
+	SDL_RenderCopy(renderer, loadingTexture, 0, &background);
+	if (invisRate > 0)
+		invisRate -= 17;
+}
+
 void inputPositions()
 {
 	loop(0, 5)
