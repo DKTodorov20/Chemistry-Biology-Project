@@ -498,6 +498,53 @@ void entityUpdate()
 	}
 }
 
+void buttonHighLight()
+{
+	returnHighLightToNormal();
+	switch (buttonNumber) {
+	case 1:
+		playButtonCurrent.x = 250;
+		break;
+	case 2:
+		quitButtonCurrent.x = 125;
+		break;
+	default:
+		break;
+	}
+}
+
+void enterEvent()
+{
+	blackoutCheck = 1;
+	if (onMenuCheck == 1)
+	{
+		switch (buttonNumber) {
+		case 1:
+			onMenuCheck = 0;
+			break;
+		case 2:
+			isPlaying = 0;
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		switch (buttonNumber) {
+		case 1:
+			onMenuCheck = 0;
+			break;
+		case 2:
+			isPlaying = 0;
+			break;
+		default:
+			break;
+		}
+	}
+	buttonNumber = 1;
+}
+
 int main(int argc, char* args[])
 {
 	srand(time(0));
