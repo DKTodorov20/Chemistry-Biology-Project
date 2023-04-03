@@ -357,6 +357,58 @@ void entetyRespawn()
 
 }
 
+void levelUp()
+{
+	if (kills == killsPerLevelUp)
+	{
+		levelDebounce = 1;
+		stats = rand() % 5;
+
+		if (stats == 0)
+		{
+			laserSpeed += 5;
+		}
+		if (stats == 1)
+		{
+			laserSize += 50;
+		}
+		else if (stats == 2) {
+			hearts++;
+			playerRect.w += 10;
+			playerRect.h += 10;
+		}
+		else if (stats == 3) {
+			walkspeed += 5;
+		}
+		else if (stats == 4) {
+			if (fireRate >= 0)
+				fireRate -= 4;
+			cooldown = fireRate;
+		}
+		kills = 0;
+	}
+	if (levelDebounce == 1)
+	{
+		if (lavelUpTransparency <= 255)
+			lavelUpTransparency += 17;
+		if (lavelUpTransparency == 255)
+			levelDebounce = 0;
+		SDL_SetTextureAlphaMod(levelupTexture, lavelUpTransparency);
+		SDL_RenderCopy(renderer, levelupTexture, 0, &levelUpRect);
+
+		upgradePrint();
+	}
+	else
+	{
+		if (lavelUpTransparency > 0)
+			lavelUpTransparency -= 17;
+		SDL_SetTextureAlphaMod(levelupTexture, lavelUpTransparency);
+		SDL_RenderCopy(renderer, levelupTexture, 0, &levelUpRect);
+
+		upgradePrint();
+	}
+}
+
 int main(int argc, char* args[])
 {
 	srand(time(0));
